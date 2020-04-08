@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import logo from "../../asset/icons/logo.png"
+import logo from "../../../asset/icons/logo.png"
 
 export default function TopbarLogo() {
     return (

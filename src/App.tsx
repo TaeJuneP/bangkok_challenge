@@ -1,18 +1,27 @@
 import React from 'react'
 import styled, { createGlobalStyle } from "styled-components"
-import MainPage from "./pages/MainPage"
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import MainPage from "./component/pages/MainPage"
+import LoginPage from "./component/pages/LoginPage"
 
 export default function App() {
   return (
-    <Container >
-      <MainPage />
-      <GlobalStyle />
-    </Container>
+    <BrowserRouter>
+      <Container >
+        <Switch>
+          <Route exact={true} path="/" component={LoginPage} />
+          <Route path="/main" component={MainPage} />
+        </Switch>
+        <GlobalStyle />
+      </Container>
+    </BrowserRouter>
   );
 }
 
 const Container = styled.div`
-
+  width:100%;
+  height:100%;
 `
 
 export const GlobalStyle = createGlobalStyle`

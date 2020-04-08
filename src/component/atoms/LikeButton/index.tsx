@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import like from "../../asset/icons/like.png"
+import like from "../../../asset/icons/like.png"
 
 export default function LikeButton() {
     return (

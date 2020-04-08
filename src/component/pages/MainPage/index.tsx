@@ -5,7 +5,7 @@ import Topbar from "../../organisms/Topbar"
 import Card from "../../organisms/Card"
 
 
-import { device } from "../../asset/mediaSize"
+import { device } from "../../../asset/mediaSize"
 
 
 const userId = "Taejune"

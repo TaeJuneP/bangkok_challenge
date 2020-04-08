@@ -8,11 +8,11 @@ import LikePoint from "../../molecules/CardLikePoint"
 import Description from "../../molecules/CardDescription"
 import Comment from "../../molecules/CardInputComment"
 
-import { device } from "../../asset/mediaSize"
+import { device } from "../../../asset/mediaSize"
 
-const img = require("../../asset/icons/logo.png")
+import img from "../../../asset/icons/logo.png"
 
-const data = ["Taejune", "2020.04.08", img, 30, "내용을 적자~~!!"]
+const data: any = ["Taejune", "2020.04.08", img, 30, "내용을 적자~~!!"]
 
 export default function Card() {
     return (
