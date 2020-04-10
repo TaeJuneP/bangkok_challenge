@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import KakaoLogin from "react-kakao-login";
 import styled from "styled-components"
 
