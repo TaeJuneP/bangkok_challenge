@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.js": "/TaeJuneP/bangkok_challenge/static/js/main.f7ffb950.chunk.js",
+    "main.js.map": "/TaeJuneP/bangkok_challenge/static/js/main.f7ffb950.chunk.js.map",
+    "runtime-main.js": "/TaeJuneP/bangkok_challenge/static/js/runtime-main.e2175c64.js",
+    "runtime-main.js.map": "/TaeJuneP/bangkok_challenge/static/js/runtime-main.e2175c64.js.map",
+    "static/js/2.682e8b36.chunk.js": "/TaeJuneP/bangkok_challenge/static/js/2.682e8b36.chunk.js",
+    "static/js/2.682e8b36.chunk.js.map": "/TaeJuneP/bangkok_challenge/static/js/2.682e8b36.chunk.js.map",
+    "index.html": "/TaeJuneP/bangkok_challenge/index.html",
+    "precache-manifest.8c3aff0a0932587260bb581dc1edcb16.js": "/TaeJuneP/bangkok_challenge/precache-manifest.8c3aff0a0932587260bb581dc1edcb16.js",
+    "service-worker.js": "/TaeJuneP/bangkok_challenge/service-worker.js",
+    "static/js/2.682e8b36.chunk.js.LICENSE.txt": "/TaeJuneP/bangkok_challenge/static/js/2.682e8b36.chunk.js.LICENSE.txt",
+    "static/media/logo.png": "/TaeJuneP/bangkok_challenge/static/media/logo.d1cf2a13.png",
+    "static/media/main_logo.png": "/TaeJuneP/bangkok_challenge/static/media/main_logo.29602a9c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e2175c64.js",
+    "static/js/2.682e8b36.chunk.js",
+    "static/js/main.f7ffb950.chunk.js"
+  ]
+}
