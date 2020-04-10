@@ -2,7 +2,7 @@
   "name": "bangkok_chellenge",
   "version": "0.1.0",
   "private": true,
-  "homepage":  "https://taejunP.github.io/bangkok_challenge",
+  "homepage": "https://taejunP.github.io/bangkok_challenge",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -30,7 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy":"npm run build&&gh-pages -d build"
+    "deploy": "npm run build&&gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -50,5 +50,16 @@
   "devDependencies": {
     "gh-pages": "^2.2.0",
     "redux-devtools": "^3.5.0"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TaeJuneP/bangkok_challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TaeJuneP/bangkok_challenge/issues"
   }
 }
