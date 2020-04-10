@@ -9,6 +9,7 @@ const API_KEY = process.env.REACT_APP_KAKAO_JS_KEY
 export default function KakaoLoginButton() {
     const reponsekakao = (res: any) => {
         console.log(res)
+        window.location.href ="/main"
     }
     const responseFail = () => {
         console.log("Error");
