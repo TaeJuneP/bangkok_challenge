@@ -34,7 +34,7 @@ const Container = styled.div`
     border: 1px solid #dbdbdb;
     border-radius:3px;
     width:100%;
-    @media ${device.tablet}{
+    @media ${device.desktop}{
         margin-bottom:15px;
         margin:auto;
     }

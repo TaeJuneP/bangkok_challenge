@@ -28,6 +28,16 @@ export const groupLoginFailure = (): LoginFailureAction => ({
 });
 
 
+// 모달
+export type ModalIsVisibleAction = {
+  type: typeof types.MODAL_ISVISIBLE;
+  payload: boolean
+}
+
+export const modalIsVisible = (): ModalIsVisibleAction => ({
+  type: types.MODAL_ISVISIBLE,
+  payload: false
+});
 
 export type LoginActionTypes =
   | LoginRequestAction

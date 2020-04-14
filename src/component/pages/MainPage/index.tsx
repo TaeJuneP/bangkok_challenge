@@ -1,32 +1,56 @@
 import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
+
 import styled from "styled-components"
 
+import Attachment from "../../atoms/AttachmentImgButton"
 import Topbar from "../../organisms/Topbar"
 import Card from "../../organisms/Card"
-
+import Modal from "../../organisms/CreatePostModal"
 
 import { device } from "../../../asset/mediaSize"
+import { MODAL_ISVISIBLE } from "../../../modules/redux/actions/types";
 
 
 const userId = "Taejune"
 const userPoint = "140"
 export default function MainPage() {
     const [width, setWidth] = useState(window.innerWidth);
+    const [imgArr, setImgArr] = useState({});
+    const modalInfo = useSelector((state: any) => state.modal.status);
+    const dispatch = useDispatch();
+
     const updateWidthAndHeight = () => {
         setWidth(window.innerWidth);
     };
+
+    const clickAttachmentButton = () => {
+        dispatch({ type: MODAL_ISVISIBLE, payload: true })
+    }
+    const closeModal = () => {
+        setImgArr({});
+        dispatch({ type: MODAL_ISVISIBLE, payload: false })
+    }
 
     useEffect(() => {
         window.addEventListener("resize", updateWidthAndHeight);
         return () => window.removeEventListener("resize", updateWidthAndHeight);
     });
 
+    useEffect(() => {
+        if (Object.keys(imgArr).length > 0) {
+            clickAttachmentButton()
+        }
+    }, [modalInfo, imgArr])
     return (
         <Container>
+            {modalInfo ?
+                <Modal closeModal={closeModal} imgArr={imgArr} />
+                : null}
             <Topbar userId={userId} userPoint={userPoint} />
             <MainSession>
                 <FixButton windWidth={((width - 975) / 2) + 20}>
-                    <Span>작성</Span>
+                    <Attachment setImgArr={setImgArr} />
                     <Span>내글</Span>
                     <Span>댓글</Span>
                     <Span>추천</Span>
@@ -48,7 +72,7 @@ const MainSession = styled.section`
     padding-top: 74px;
 `
 const FixButton: React.ComponentType<any> = styled.div`
-    @media ${device.tablet}{
+    @media ${device.desktop}{
        bottom:0;
        top:auto;
        position: fixed;

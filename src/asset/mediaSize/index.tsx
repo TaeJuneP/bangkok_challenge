@@ -4,6 +4,6 @@ const size = {
 }
 
 export const device = {
-    tablet: `(max-width: ${size.desktop})`,
-    desktop: `(min-width: ${size.desktop})`,
+    tablet: `(max-width: ${size.tablet})`,
+    desktop: `(max-width: ${size.desktop})`,
 };
