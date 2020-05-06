@@ -1,13 +1,17 @@
 import React from "react"
 import styled from "styled-components"
 
-export default function ProfileImg() {
+type Props = {
+    userImg: string
+}
+
+export default function ProfileImg(props: Props) {
     return (
-        <Container />
+        <Container src={props.userImg} />
     )
 }
 
-const Container = styled.div`
+const Container = styled.img`
     border-radius:50%;
     border: 1px solid #dbdbdb;
     width:32px;

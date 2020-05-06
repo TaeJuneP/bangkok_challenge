@@ -6,10 +6,13 @@ import Img from "../../../asset/icons/kakaologin.png";
 
 const API_KEY = process.env.REACT_APP_KAKAO_JS_KEY;
 
-export default function KakaoLoginButton() {
+type Props = {
+  clickLoginButton: (token: any) => void
+}
+
+export default function KakaoLoginButton(props: Props) {
   const reponsekakao = (res: any) => {
-    console.log(res);
-    window.location.href = "/main";
+    props.clickLoginButton(res.response.access_token)
   };
   const responseFail = () => {
     console.log("Error");
@@ -22,7 +25,7 @@ export default function KakaoLoginButton() {
         buttonText="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;카카오계정으로 로그인"
         onSuccess={reponsekakao}
         onFailure={responseFail}
-        getProfile={true}
+        getProfile={false}
       />
       <KakaoImg src={Img} />
     </Container>

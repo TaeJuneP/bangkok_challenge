@@ -6,7 +6,7 @@ export type LoginInfo = {
 };
 
 const initialState: LoginInfo = {
-  loginInfo: {}
+  loginInfo: { user: { id: "", nickname: "", img: "" }, token: "", login: false }
 };
 
 const LoginReducer = (
@@ -17,7 +17,7 @@ const LoginReducer = (
     case types.LOGIN_SUCCESS:
       return {
         ...state,
-        loginInfo: action.payload
+        loginInfo: { user: { id: action.payload.id, nickname: action.payload.nickname, img: action.payload.profile_photo }, token: action.payload.serviceAccessToken, login: true }
       };
     case types.LOGIN_FAILURE:
       return {

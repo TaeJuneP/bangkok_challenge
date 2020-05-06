@@ -39,7 +39,66 @@ export const modalIsVisible = (): ModalIsVisibleAction => ({
   payload: false
 });
 
+// 게시물
+export type GetNoticeRequestAction = {
+  type: typeof types.GET_NOTICE_REQUEST;
+}
+
+export const getNoticeRequest = (): GetNoticeRequestAction => ({
+  type: types.GET_NOTICE_REQUEST
+});
+
+export type GetNoticeSuccessAction = {
+  type: typeof types.GET_NOTICE_SUCCESS;
+  payload: any;
+}
+
+export const getNoticeSuccess = (notice: any): GetNoticeSuccessAction => ({
+  type: types.GET_NOTICE_SUCCESS,
+  payload: notice
+})
+export type GetNoticeFailureAction = {
+  type: typeof types.GET_NOTICE_FAILURE;
+}
+
+export const getNoticeFailure = (): GetNoticeFailureAction => ({
+  type: types.GET_NOTICE_FAILURE
+});
+
+export type PostNoticeRequestAction = {
+  type: typeof types.POST_NOTICE_REQUEST;
+}
+
+export const postNoticeRequest = (): PostNoticeRequestAction => ({
+  type: types.POST_NOTICE_REQUEST
+});
+
+// export type GetNoticeSuccessAction = {
+//   type: typeof types.GET_NOTICE_SUCCESS;
+//   payload: any;
+// }
+
+// export const getNoticeSuccess = (notice: any): GetNoticeSuccessAction => ({
+//   type: types.GET_NOTICE_SUCCESS,
+//   payload: notice
+// })
+// export type GetNoticeFailureAction = {
+//   type: typeof types.GET_NOTICE_FAILURE;
+// }
+
+// export const getNoticeFailure = (): GetNoticeFailureAction => ({
+//   type: types.GET_NOTICE_FAILURE
+// });
+
+
+
 export type LoginActionTypes =
   | LoginRequestAction
   | LoginSuccessAction
   | LoginFailureAction;
+
+export type NoticeActionTypes =
+  | GetNoticeRequestAction
+  | GetNoticeSuccessAction
+  | GetNoticeFailureAction
+  | PostNoticeRequestAction;

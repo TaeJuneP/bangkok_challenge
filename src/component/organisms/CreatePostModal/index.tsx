@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { POST_NOTICE_REQUEST } from "../../../modules/redux/actions/types";
+
 import styled from "styled-components";
 
 import Dimmer from "../../atoms/Dimmer";
@@ -11,9 +14,30 @@ import { device } from "../../../asset/mediaSize";
 type Props = {
   closeModal: () => void;
   imgArr: any;
+  token: string;
 };
 
 export default function CreatePostModal(props: Props) {
+  const [description, setDescription] = useState("");
+  const [hashtag, setHashtag] = useState("");
+  const dispatch = useDispatch();
+
+  const changeDescriptionValue = (e: any) => {
+    setDescription(e.target.value);
+  }
+
+  const changeHashtagValue = (e: any) => {
+    setHashtag(e.target.value)
+  }
+
+  const createFormdata = () => {
+    const formData = new FormData();
+    formData.append('file', props.imgArr[0]);
+    formData.append("article", description);
+    formData.append("hashtag", hashtag);
+    dispatch({ type: POST_NOTICE_REQUEST, token: props.token, data: formData })
+  }
+
   return (
     <>
       <Dimmer event={props.closeModal} />
@@ -23,9 +47,10 @@ export default function CreatePostModal(props: Props) {
           <Close event={props.closeModal} />
         </Header>
         <ImgList imgArr={props.imgArr} />
-        <TextArea placeholder="설명 입력..." />
+        <TextArea placeholder="설명 입력..." value={description} onChange={(e: any) => { changeDescriptionValue(e) }} />
+        <HashTagInput placeholder="#hashtag" value={hashtag} onChange={(e: any) => { changeHashtagValue(e) }} />
         <ButtonContainer>
-          <Complete />
+          <Complete createFormdata={createFormdata} />
         </ButtonContainer>
       </Container>
     </>
@@ -70,6 +95,17 @@ const TextArea = styled.textarea`
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
 `;
+
+const HashTagInput = styled.input`
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 0;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  color: blue;
+`
 
 const ButtonContainer = styled.div`
   width: 160px;

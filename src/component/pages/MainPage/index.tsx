@@ -9,14 +9,16 @@ import Card from "../../organisms/Card";
 import Modal from "../../organisms/CreatePostModal";
 
 import { device } from "../../../asset/mediaSize";
-import { MODAL_ISVISIBLE } from "../../../modules/redux/actions/types";
+import { MODAL_ISVISIBLE, GET_NOTICE_REQUEST } from "../../../modules/redux/actions/types";
 
-const userId = "Taejune";
+
 const userPoint = "140";
 export default function MainPage() {
   const [width, setWidth] = useState(window.innerWidth);
   const [imgArr, setImgArr] = useState({});
+  const loginInfo = useSelector((state: any) => state.login.loginInfo);
   const modalInfo = useSelector((state: any) => state.modal.status);
+  const notices = useSelector((state: any) => state.notice.notice)
   const dispatch = useDispatch();
 
   const updateWidthAndHeight = () => {
@@ -38,11 +40,16 @@ export default function MainPage() {
       dispatch({ type: MODAL_ISVISIBLE, payload: true });
     }
   }, [dispatch, imgArr]);
-  
+
+  useEffect(() => {
+    dispatch({ type: GET_NOTICE_REQUEST, token: loginInfo.token });
+  }, []);
+
+
   return (
     <Container>
-      {modalInfo ? <Modal closeModal={closeModal} imgArr={imgArr} /> : null}
-      <Topbar userId={userId} userPoint={userPoint} />
+      {modalInfo ? <Modal closeModal={closeModal} imgArr={imgArr} token={loginInfo.token} /> : null}
+      <Topbar userId={loginInfo.user.nickname} userPoint={userPoint} />
       <MainSession>
         <FixButton windWidth={(width - 975) / 2 + 20}>
           <Attachment setImgArr={setImgArr} />
@@ -50,7 +57,10 @@ export default function MainPage() {
           <Span>댓글</Span>
           <Span>추천</Span>
         </FixButton>
-        <Card />
+        {Object.keys(notices).map((num: any) =>
+          <Card notice={notices[num]} key={num} />
+        )}
+
       </MainSession>
     </Container>
   );
@@ -97,4 +107,5 @@ const Span = styled.button`
   text-align: center;
   border-left: 1px solid #dbdbdb;
   height: 100%;
+  background-color: #ffffff;
 `;
