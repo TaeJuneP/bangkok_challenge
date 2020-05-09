@@ -7,9 +7,9 @@ import Img from "../../../asset/icons/kakaologin.png";
 const API_KEY = process.env.REACT_APP_KAKAO_JS_KEY;
 
 export default function KakaoLoginButton() {
-  const reponsekakao = (res: any) => {
+  const reponsekakao = async(res: any) => {
     console.log(res);
-    window.location.href = "/main";
+    // window.location.href = "/main";
   };
   const responseFail = () => {
     console.log("Error");
