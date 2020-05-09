@@ -1,9 +1,13 @@
 import React from "react"
 import styled from "styled-components"
 
-export default function CompleteButton() {
+type Props = {
+    createFormdata: () => void
+}
+
+export default function CompleteButton(props: Props) {
     return (
-        <Button>완료</Button>
+        <Button onClick={props.createFormdata}>완료</Button>
     )
 }
 

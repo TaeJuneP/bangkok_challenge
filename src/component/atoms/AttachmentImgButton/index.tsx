@@ -47,6 +47,7 @@ const Container = styled.div`
 `;
 
 const Span = styled.button`
+  background-color: #ffffff;
   font-size: 18px;
   font-weight: bold;
   width: 25%;

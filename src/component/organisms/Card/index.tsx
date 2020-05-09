@@ -16,14 +16,18 @@ import img from "../../../asset/icons/logo.png";
 
 const data: any = ["Taejune", "2020.04.08", [img, img], 30, "내용을 적자~~!!"];
 
-export default function Card() {
+type Props = {
+  notice: any
+}
+
+export default function Card(props: Props) {
   return (
     <Container>
-      <Header userId={data[0]} />
-      <Img img={data[2][1]} />
+      <Header userId={props.notice.nickname} userImg={props.notice.profile_photo} />
+      <Img img={props.notice.filePath} />
       <Buttons />
-      <LikePoint point={data[3]} />
-      <Description description={data[4]} />
+      <LikePoint point={props.notice.likeCount} />
+      <Description description={props.notice.article} />
       <Comment />
     </Container>
   );

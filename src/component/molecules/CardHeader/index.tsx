@@ -6,12 +6,13 @@ import Name from "../../atoms/BaseFontText"
 
 type Props = {
     userId: string;
+    userImg: string;
 }
 
 export default function CardHeader(props: Props) {
     return (
         <Container>
-            <Img />
+            <Img userImg={props.userImg} />
             <UserIdContainer>
                 <Name text={props.userId} />
             </UserIdContainer>
