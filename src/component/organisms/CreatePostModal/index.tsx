@@ -31,11 +31,12 @@ export default function CreatePostModal(props: Props) {
   }
 
   const createFormdata = () => {
+    console.log(props.imgArr[0]);
     const formData = new FormData();
-    formData.append('file', props.imgArr[0]);
     formData.append("article", description);
     formData.append("hashtag", hashtag);
-    dispatch({ type: POST_NOTICE_REQUEST, token: props.token, data: formData })
+    formData.append('file', props.imgArr[0]);
+    dispatch({ type: POST_NOTICE_REQUEST, token: props.token, formData: formData })
   }
 
   return (

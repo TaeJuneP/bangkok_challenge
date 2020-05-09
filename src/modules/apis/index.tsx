@@ -23,7 +23,7 @@ export const kakaoLogin = async (token: string, ) => {
 };
 
 export const getNotices = async (token: string) => {
-  const subUrl = "/api/post/";
+  const subUrl = "/api/post/?page=0&size=10&sort=createAt,desc";
   let data;
   await axios
     .get(baseUrl + subUrl, { headers: { Authorization: "Bearer " + token } })
@@ -33,23 +33,13 @@ export const getNotices = async (token: string) => {
   return data;
 }
 
-export const postNotice = async (token: string, data: any) => {
+export const postNotice = async (token: string, formData: any) => {
   const subUrl = "/api/post/upload"
-  console.log(data.get("file"))
-  await axios
-    .post(
-      baseUrl + subUrl,
-      {
-        "Content-Disposition": data
-      },
-      { headers: { "Content-Type": "multipart/form-data, boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm, charset=UTF-8", Authorization: "Bearer " + token } }
-    )
-    .then((response: any) => {
-      console.log(response);
-      data = response;
-    }).catch(err => {
-      console.log(err)
-    });
-
+  await axios({
+    method: "post",
+    url: baseUrl + subUrl,
+    data: formData,
+    headers: { "Content-Type": "multipart/form-data, boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm, charset=UTF-8", Authorization: "Bearer " + token }
+  })
 }
 

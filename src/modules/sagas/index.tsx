@@ -26,9 +26,9 @@ function* getNoticeRequest({ token }: any) {
   }
 }
 
-function* postNoticeRequest({ token, data }: any) {
+function* postNoticeRequest({ token, formData }: any) {
   try {
-    yield call(postNotice, token, data)
+    yield call(postNotice, token, formData)
   } catch (err) {
     console.log(err)
   }
