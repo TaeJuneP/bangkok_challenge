@@ -25,21 +25,30 @@ export default function Comment(props: Props) {
 
 const Container = styled.div`
     width:100%;
-    height:100%;
-    position:fixed;
     border-top: 1px solid #dbdbdb;
-     @media ${device.desktop} {
-        position:relative;
-        height:auto;
-  }
+    position:relative;
+    height:auto;
+    z-index:1;
+    top:none;
+    margin:0;
+    @media ${device.mobile}{
+        position: fixed;
+        z-index: 3;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        background-color: #ffffff;
+        margin: -1px;
+    }
 `
 const CommentList = styled.div`
     width:100%;
-    height:calc(100% - 56px);
+    height:calc(100% - 112px);
     overflow-y:auto;
 `
 
 const Title = styled.div`
     width:100%;
+    height:56px;
     padding:16px;
 `
