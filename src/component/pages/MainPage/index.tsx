@@ -58,7 +58,7 @@ export default function MainPage() {
           <Span>추천</Span>
         </FixButton>
         {Object.keys(notices).map((num: any) =>
-          <Card notice={notices[num]} key={num} />
+          <Card notice={notices[num]} key={num} loginInfo={loginInfo} />
         )}
 
       </MainSession>
@@ -88,6 +88,7 @@ const FixButton: React.ComponentType<any> = styled.div`
     max-width: 600px;
     min-width: 300px;
   }
+  z-index: 3;
   display: flex;
   align-items: center;
   position: fixed;

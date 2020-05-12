@@ -26,7 +26,6 @@ const Container = styled.div`
     display:flex;
     padding: 16px;
     align-items:center;
-    border-bottom: 1px solid #dbdbdb;
 `
 
 const UserIdContainer = styled.div`

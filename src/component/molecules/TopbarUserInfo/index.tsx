@@ -12,7 +12,7 @@ export default function TopbarUserInfo(props: Props) {
         <Container>
             <Text text={props.userId} />
             <Blank />
-            <Text text={props.userPoint} />
+            {/* <Text text={props.userPoint} /> */}
         </Container>
     )
 }

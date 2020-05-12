@@ -23,7 +23,7 @@ export const kakaoLogin = async (token: string, ) => {
 };
 
 export const getNotices = async (token: string) => {
-  const subUrl = "/api/post/?page=0&size=10&sort=createAt,desc";
+  const subUrl = "/api/post/";
   let data;
   await axios
     .get(baseUrl + subUrl, { headers: { Authorization: "Bearer " + token } })
@@ -43,3 +43,42 @@ export const postNotice = async (token: string, formData: any) => {
   })
 }
 
+export const getCommentList = async (id: string, token: string) => {
+  const subUrl = `/api/post/${id}/comment`
+  let data;
+  await axios.get(
+    baseUrl + subUrl,
+    { headers: { Authorization: "Bearer " + token } }
+  ).then(response => {
+    data = response.data
+  })
+  return data
+}
+
+export const postComment = async (id: string, token: string, content: string) => {
+  const subUrl = `/api/post/${id}/comment`
+  let data;
+  await axios({
+    method: "post",
+    url: baseUrl + subUrl,
+    data: { content },
+    headers: {
+      Authorization: "Bearer " + token
+    }
+  }).then(async () => { await getCommentList(id, token).then((response: any) => { data = response.data }) }
+  )
+  return data
+}
+
+export const putLikeStatus = async (id: string, token: string) => {
+  const subUrl = `/api/like/${id}`
+  let data;
+  await axios({
+    method: "put",
+    url: baseUrl + subUrl,
+    headers: {
+      Authorization: "Bearer " + token
+    }
+  }).then(response => { data = response })
+  return data
+}

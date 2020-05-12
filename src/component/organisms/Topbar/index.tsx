@@ -37,4 +37,5 @@ const Container = styled.div`
     position: fixed;
     height:54px;
     top:0;
+    z-index: 3;
 `

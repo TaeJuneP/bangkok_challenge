@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Carousel } from "react-responsive-carousel";
 
@@ -8,27 +8,49 @@ import Img from "../../molecules/CardSlideImg";
 import Buttons from "../../molecules/CardButtonsContainer";
 import LikePoint from "../../molecules/CardLikePoint";
 import Description from "../../molecules/CardDescription";
-import Comment from "../../molecules/CardInputComment";
+import Comment from "../../organisms/Comment";
+import CommentOpen from "../../atoms/CommentOpenButton"
+import Hashtag from "../../atoms/HashTagContents";
 
+import { getCommentList, postComment, putLikeStatus } from "../../../modules/apis"
 import { device } from "../../../asset/mediaSize";
-
-import img from "../../../asset/icons/logo.png";
-
-const data: any = ["Taejune", "2020.04.08", [img, img], 30, "내용을 적자~~!!"];
 
 type Props = {
   notice: any
+  loginInfo: any
 }
 
 export default function Card(props: Props) {
+
+  const [commentList, setCommentList] = useState([]);
+  const [commentVisible, setCommentVisible] = useState(false);
+  const [like, setLike] = useState(props.notice.likeCount);
+  const getCommentHandler = async () => {
+    if (!commentVisible) {
+      let data: any = await getCommentList(props.notice.id, props.loginInfo.token)
+      setCommentList(data)
+    }
+  }
+
+  const postCommentHandler = async (content: string) => {
+    let data: any = await postComment(props.notice.id, props.loginInfo.token, content)
+    setCommentList(data)
+  }
+
+  const putLikeHandler = async () => {
+    let data: any = await putLikeStatus(props.notice.id, props.loginInfo.token)
+    console.log(data)
+  }
   return (
     <Container>
       <Header userId={props.notice.nickname} userImg={props.notice.profile_photo} />
       <Img img={props.notice.filePath} />
-      <Buttons />
-      <LikePoint point={props.notice.likeCount} />
+      <Buttons putLike={putLikeHandler} />
+      <LikePoint point={like} />
+      <Hashtag hashtag={props.notice.hashTag} />
       <Description description={props.notice.article} />
-      <Comment />
+      <CommentOpen getComment={getCommentHandler} commentVisible={commentVisible} setCommentVisible={setCommentVisible} />
+      {commentVisible ? <Comment commentList={commentList} postComment={postCommentHandler} /> : null}
     </Container>
   );
 }

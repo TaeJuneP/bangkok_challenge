@@ -3,11 +3,15 @@ import styled from "styled-components"
 
 import Like from "../../atoms/LikeButton"
 
-export default function CardButtonsContainer() {
+type Props = {
+    putLike: () => void;
+}
+
+export default function CardButtonsContainer(props: Props) {
     return (
         <Container>
             <ButtonContainer>
-                <Like />
+                <Like putLike={props.putLike} />
             </ButtonContainer>
         </Container>
     )

@@ -105,7 +105,7 @@ const HashTagInput = styled.input`
   border: 0;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
-  color: blue;
+  color: #00376b;
 `
 
 const ButtonContainer = styled.div`

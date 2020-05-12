@@ -3,13 +3,22 @@ import styled from "styled-components"
 
 import like from "../../../asset/icons/like.png"
 
-export default function LikeButton() {
+type Props = {
+    putLike: () => void;
+}
+
+export default function LikeButton(props: Props) {
     return (
-        <Img src={like} />
+        <Container onClick={() => props.putLike()}>
+            <Img src={like} />
+        </Container>
+
     )
 }
 
 const Img = styled.img`
     width:100%;
     height:100%;
+`
+const Container = styled.div`
 `
