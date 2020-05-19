@@ -20,7 +20,7 @@ export default function MainPage() {
   const modalInfo = useSelector((state: any) => state.modal.status);
   const notices = useSelector((state: any) => state.notice.notice)
   const dispatch = useDispatch();
-
+  
   const updateWidthAndHeight = () => {
     setWidth(window.innerWidth);
   };
@@ -39,11 +39,12 @@ export default function MainPage() {
     if (Object.keys(imgArr).length > 0) {
       dispatch({ type: MODAL_ISVISIBLE, payload: true });
     }
-  }, [dispatch, imgArr]);
+  });
 
   useEffect(() => {
     dispatch({ type: GET_NOTICE_REQUEST, token: loginInfo.token });
   }, []);
+
 
 
   return (
@@ -88,7 +89,7 @@ const FixButton: React.ComponentType<any> = styled.div`
     max-width: 600px;
     min-width: 300px;
   }
-  z-index: 3;
+  z-index: 2;
   display: flex;
   align-items: center;
   position: fixed;

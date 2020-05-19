@@ -1,13 +1,12 @@
 import * as types from "./types";
 
-
 // 로그인
 export type LoginRequestAction = {
   type: typeof types.LOGIN_REQUEST;
 };
 
 export const loginRequest = (): LoginRequestAction => ({
-  type: types.LOGIN_REQUEST
+  type: types.LOGIN_REQUEST,
 });
 
 export type LoginSuccessAction = {
@@ -17,60 +16,66 @@ export type LoginSuccessAction = {
 
 export const loginSuccess = (loginInfo: any): LoginSuccessAction => ({
   type: types.LOGIN_SUCCESS,
-  payload: loginInfo
+  payload: loginInfo,
 });
 
 export type LoginFailureAction = {
   type: typeof types.LOGIN_FAILURE;
 };
 export const groupLoginFailure = (): LoginFailureAction => ({
-  type: types.LOGIN_FAILURE
+  type: types.LOGIN_FAILURE,
 });
 
+export type CheckBkcTokenAction = {
+  type: typeof types.CHECK_BKC_TOKEN;
+};
+export const checkBkcToken = (): CheckBkcTokenAction => ({
+  type: types.CHECK_BKC_TOKEN,
+});
 
 // 모달
 export type ModalIsVisibleAction = {
   type: typeof types.MODAL_ISVISIBLE;
-  payload: boolean
-}
+  payload: boolean;
+};
 
 export const modalIsVisible = (): ModalIsVisibleAction => ({
   type: types.MODAL_ISVISIBLE,
-  payload: false
+  payload: false,
 });
 
 // 게시물
 export type GetNoticeRequestAction = {
   type: typeof types.GET_NOTICE_REQUEST;
-}
+};
 
 export const getNoticeRequest = (): GetNoticeRequestAction => ({
-  type: types.GET_NOTICE_REQUEST
+  type: types.GET_NOTICE_REQUEST,
 });
 
 export type GetNoticeSuccessAction = {
   type: typeof types.GET_NOTICE_SUCCESS;
   payload: any;
-}
+};
 
 export const getNoticeSuccess = (notice: any): GetNoticeSuccessAction => ({
   type: types.GET_NOTICE_SUCCESS,
-  payload: notice
-})
+  payload: notice,
+});
 export type GetNoticeFailureAction = {
   type: typeof types.GET_NOTICE_FAILURE;
-}
+};
 
 export const getNoticeFailure = (): GetNoticeFailureAction => ({
-  type: types.GET_NOTICE_FAILURE
+  type: types.GET_NOTICE_FAILURE,
 });
 
 export type PostNoticeRequestAction = {
   type: typeof types.POST_NOTICE_REQUEST;
-}
+};
 
 export const postNoticeRequest = (): PostNoticeRequestAction => ({
-  type: types.POST_NOTICE_REQUEST
+  type: types.POST_NOTICE_REQUEST,
 });
 
 // export type GetNoticeSuccessAction = {
@@ -90,12 +95,11 @@ export const postNoticeRequest = (): PostNoticeRequestAction => ({
 //   type: types.GET_NOTICE_FAILURE
 // });
 
-
-
 export type LoginActionTypes =
   | LoginRequestAction
   | LoginSuccessAction
-  | LoginFailureAction;
+  | LoginFailureAction
+  | CheckBkcTokenAction;
 
 export type NoticeActionTypes =
   | GetNoticeRequestAction

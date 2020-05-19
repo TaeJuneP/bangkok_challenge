@@ -24,20 +24,23 @@ export default function CreatePostModal(props: Props) {
 
   const changeDescriptionValue = (e: any) => {
     setDescription(e.target.value);
-  }
+  };
 
   const changeHashtagValue = (e: any) => {
-    setHashtag(e.target.value)
-  }
+    setHashtag(e.target.value);
+  };
 
   const createFormdata = () => {
-    console.log(props.imgArr[0]);
     const formData = new FormData();
     formData.append("article", description);
-    formData.append("hashtag", hashtag);
-    formData.append('file', props.imgArr[0]);
-    dispatch({ type: POST_NOTICE_REQUEST, token: props.token, formData: formData })
-  }
+    formData.append("hashTag", hashtag);
+    formData.append("file", props.imgArr[0]);
+    dispatch({
+      type: POST_NOTICE_REQUEST,
+      token: props.token,
+      formData: formData,
+    });
+  };
 
   return (
     <>
@@ -48,8 +51,20 @@ export default function CreatePostModal(props: Props) {
           <Close event={props.closeModal} />
         </Header>
         <ImgList imgArr={props.imgArr} />
-        <TextArea placeholder="설명 입력..." value={description} onChange={(e: any) => { changeDescriptionValue(e) }} />
-        <HashTagInput placeholder="#hashtag" value={hashtag} onChange={(e: any) => { changeHashtagValue(e) }} />
+        <TextArea
+          placeholder="설명 입력..."
+          value={description}
+          onChange={(e: any) => {
+            changeDescriptionValue(e);
+          }}
+        />
+        <HashTagInput
+          placeholder="#hashtag"
+          value={hashtag}
+          onChange={(e: any) => {
+            changeHashtagValue(e);
+          }}
+        />
         <ButtonContainer>
           <Complete createFormdata={createFormdata} />
         </ButtonContainer>
@@ -106,7 +121,7 @@ const HashTagInput = styled.input`
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   color: #00376b;
-`
+`;
 
 const ButtonContainer = styled.div`
   width: 160px;
