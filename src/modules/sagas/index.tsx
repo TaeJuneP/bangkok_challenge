@@ -45,6 +45,7 @@ function* postNoticeRequest({ token, formData }: any) {
 }
 
 function* checkBkcToken({ loginData }: any) {
+  console.log(loginData);
   try {
     yield call(checkLoginToken, loginData.token);
     yield put({ type: LOGIN_SUCCESS, payload: loginData });
