@@ -19,16 +19,23 @@ export default function LoginPage(props: RouteComponentProps) {
   };
 
   useEffect(() => {
-    if (window.localStorage.getItem("loginInfo") !== null) {
-      const data: any = window.localStorage.getItem("loginInfo");
-      dispatch({
-        type: CHECK_BKC_TOKEN,
-        loginData: JSON.parse(data),
-      });
-      // props.history.push(`/main`);
-    } else if (loginInfo.login) {
-      window.localStorage.setItem("loginInfo", JSON.stringify(loginInfo));
+    // if (window.localStorage.getItem("loginInfo") !== null) {
+    //   const data: any = window.localStorage.getItem("loginInfo");
+    //   dispatch({
+    //     type: CHECK_BKC_TOKEN,
+    //     loginData: JSON.parse(data),
+    //   });
+    //   props.history.push(`/main`);
+    // }
+    //  else if
+     if(loginInfo.login) {
+      // dispatch({
+      //   type: CHECK_BKC_TOKEN,
+      //   loginData: JSON.parse(data),
+      // });
       props.history.push(`/main`);
+      // window.localStorage.setItem("loginInfo", JSON.stringify(loginInfo));
+      // props.history.push(`/main`);
     }
   }, [loginInfo.login]);
 

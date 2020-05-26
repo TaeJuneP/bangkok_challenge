@@ -22,13 +22,14 @@ function* loginRequest({ token }: any) {
   }
 }
 
-function* getNoticeRequest({ token }: any) {
+function* getNoticeRequest({ token, page }: any) {
   try {
-    const data = yield call(getNotices, token);
+    const data = yield call(getNotices, token, page);
     console.log(data);
     yield put({
       type: GET_NOTICE_SUCCESS,
       payload: data.data._embedded.postList,
+      page: data.data.page,
     });
   } catch (err) {
     console.log("error");

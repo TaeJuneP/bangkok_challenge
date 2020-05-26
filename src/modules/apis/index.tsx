@@ -23,8 +23,8 @@ export const kakaoLogin = async (token: string) => {
   return data;
 };
 
-export const getNotices = async (token: string) => {
-  const subUrl = "/api/post/";
+export const getNotices = async (token: string, page: string) => {
+  const subUrl = `/api/post/?page=${page}&size=10`;
   let data;
   await axios
     .get(baseUrl + subUrl, { headers: { Authorization: "Bearer " + token } })
@@ -41,7 +41,7 @@ export const postNotice = async (token: string, formData: any) => {
   const subUrl = "/api/post/upload";
   await axios({
     method: "post",
-    url: baseUrl1 + subUrl,
+    url: baseUrl + subUrl,
     data: formData,
     headers: {
       "Content-Type":

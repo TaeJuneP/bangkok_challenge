@@ -9,48 +9,68 @@ import Buttons from "../../molecules/CardButtonsContainer";
 import LikePoint from "../../molecules/CardLikePoint";
 import Description from "../../molecules/CardDescription";
 import Comment from "../../organisms/Comment";
-import CommentOpen from "../../atoms/CommentOpenButton"
+import CommentOpen from "../../atoms/CommentOpenButton";
 import Hashtag from "../../atoms/HashTagContents";
 
-import { getCommentList, postComment, putLikeStatus } from "../../../modules/apis"
+import {
+  getCommentList,
+  postComment,
+  putLikeStatus,
+} from "../../../modules/apis";
 import { device } from "../../../asset/mediaSize";
 
 type Props = {
-  notice: any
-  loginInfo: any
-}
+  notice: any;
+  loginInfo: any;
+};
 
 export default function Card(props: Props) {
-
   const [commentList, setCommentList] = useState([]);
   const [commentVisible, setCommentVisible] = useState(false);
   const [like, setLike] = useState(props.notice.likeCount);
   const getCommentHandler = async () => {
     if (!commentVisible) {
-      let data: any = await getCommentList(props.notice.id, props.loginInfo.token)
-      setCommentList(data)
+      let data: any = await getCommentList(
+        props.notice.id,
+        props.loginInfo.token
+      );
+      setCommentList(data);
     }
-  }
+  };
 
   const postCommentHandler = async (content: string) => {
-    let data: any = await postComment(props.notice.id, props.loginInfo.token, content)
-    setCommentList(data)
-  }
+    let data: any = await postComment(
+      props.notice.id,
+      props.loginInfo.token,
+      content
+    );
+    setCommentList(data);
+  };
 
   const putLikeHandler = async () => {
-    let data: any = await putLikeStatus(props.notice.id, props.loginInfo.token)
-    console.log(data)
-  }
+    let data: any = await putLikeStatus(props.notice.id, props.loginInfo.token);
+    console.log(data);
+  };
   return (
     <Container>
-      <Header userId={props.notice.nickname} userImg={props.notice.profile_photo} />
+      <Header
+        userId={props.notice.nickname}
+        userImg={props.notice.profile_photo}
+      />
       <Img img={props.notice.filePath} />
       <Buttons putLike={putLikeHandler} />
       <LikePoint point={like} />
       <Hashtag hashtag={props.notice.hashTag} />
       <Description description={props.notice.article} />
-      <CommentOpen getComment={getCommentHandler} commentVisible={commentVisible} setCommentVisible={setCommentVisible} />
-      {commentVisible ? <Comment commentList={commentList} postComment={postCommentHandler} /> : null}
+      <CommentOpen
+        getComment={getCommentHandler}
+        commentVisible={commentVisible}
+        setCommentVisible={setCommentVisible}
+        commentCount={props.notice.commentCount}
+      />
+      {commentVisible ? (
+        <Comment commentList={commentList} postComment={postCommentHandler} />
+      ) : null}
     </Container>
   );
 }

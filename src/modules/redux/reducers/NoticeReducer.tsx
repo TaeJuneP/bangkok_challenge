@@ -6,7 +6,7 @@ export type NoticeInfo = {
 };
 
 const initialState: NoticeInfo = {
-  notice: {}
+  notice: { data: [], page: {} },
 };
 
 const NoticeReducer = (
@@ -17,12 +17,12 @@ const NoticeReducer = (
     case types.GET_NOTICE_SUCCESS:
       return {
         ...state,
-        notice: action.payload
+        notice: { data: state.notice.data.concat(action.payload), page: action.page },
       };
     case types.GET_NOTICE_FAILURE:
       return {
         ...state,
-        notice: {}
+        notice: [],
       };
     default:
       return state;

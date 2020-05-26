@@ -56,11 +56,16 @@ export const getNoticeRequest = (): GetNoticeRequestAction => ({
 export type GetNoticeSuccessAction = {
   type: typeof types.GET_NOTICE_SUCCESS;
   payload: any;
+  page: any;
 };
 
-export const getNoticeSuccess = (notice: any): GetNoticeSuccessAction => ({
+export const getNoticeSuccess = (
+  notice: any,
+  page: any
+): GetNoticeSuccessAction => ({
   type: types.GET_NOTICE_SUCCESS,
   payload: notice,
+  page: page,
 });
 export type GetNoticeFailureAction = {
   type: typeof types.GET_NOTICE_FAILURE;

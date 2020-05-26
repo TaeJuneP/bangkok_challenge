@@ -6,21 +6,30 @@ import styled from "styled-components";
 import Attachment from "../../atoms/AttachmentImgButton";
 import Topbar from "../../organisms/Topbar";
 import Card from "../../organisms/Card";
+import PageButton from "../../atoms/PageChangeButton";
 import Modal from "../../organisms/CreatePostModal";
 
 import { device } from "../../../asset/mediaSize";
-import { MODAL_ISVISIBLE, GET_NOTICE_REQUEST } from "../../../modules/redux/actions/types";
+import {
+  MODAL_ISVISIBLE,
+  GET_NOTICE_REQUEST,
+} from "../../../modules/redux/actions/types";
 
+import MyPageImg from "../../../asset/icons/action_user_info.png";
+import Home from "../../../asset/icons/action_home.png";
+import LikePostPage from "../../../asset/icons/like.png";
 
+const imgs = [Home, MyPageImg, LikePostPage];
 const userPoint = "140";
 export default function MainPage() {
   const [width, setWidth] = useState(window.innerWidth);
+  const [page, setPage] = useState(0);
   const [imgArr, setImgArr] = useState({});
   const loginInfo = useSelector((state: any) => state.login.loginInfo);
   const modalInfo = useSelector((state: any) => state.modal.status);
-  const notices = useSelector((state: any) => state.notice.notice)
+  const notices = useSelector((state: any) => state.notice.notice);
   const dispatch = useDispatch();
-  
+
   const updateWidthAndHeight = () => {
     setWidth(window.innerWidth);
   };
@@ -31,50 +40,79 @@ export default function MainPage() {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", updateWidthAndHeight);
-    return () => window.removeEventListener("resize", updateWidthAndHeight);
-  });
-
-  useEffect(() => {
     if (Object.keys(imgArr).length > 0) {
       dispatch({ type: MODAL_ISVISIBLE, payload: true });
     }
   });
 
   useEffect(() => {
-    dispatch({ type: GET_NOTICE_REQUEST, token: loginInfo.token });
+    dispatch({ type: GET_NOTICE_REQUEST, token: loginInfo.token, page });
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", updateWidthAndHeight);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updateWidthAndHeight);
+    };
   }, []);
 
+  const handleScroll = (e: any) => {
+    const scrollHeight = e.target.scrollHeight;
+    const scrollTop = e.target.scrollTop;
+    const clientHeight = e.target.clientHeight;
+    const position = scrollHeight - scrollTop;
+    console.log(position, clientHeight);
 
-
+    if (position - 1 < clientHeight) {
+      if (notices.page.totalPages - 1 > page) {
+        let updatePage = page + 1;
+        console.log(updatePage);
+        setPage(updatePage);
+        dispatch({
+          type: GET_NOTICE_REQUEST,
+          token: loginInfo.token,
+          page: updatePage,
+        });
+      }
+    }
+  };
+  console.log(notices);
   return (
-    <Container>
-      {modalInfo ? <Modal closeModal={closeModal} imgArr={imgArr} token={loginInfo.token} /> : null}
+    <Container onScroll={handleScroll}>
+      {modalInfo ? (
+        <Modal
+          closeModal={closeModal}
+          imgArr={imgArr}
+          token={loginInfo.token}
+        />
+      ) : null}
       <Topbar userId={loginInfo.user.nickname} userPoint={userPoint} />
       <MainSession>
         <FixButton windWidth={(width - 975) / 2 + 20}>
+          {imgs.map((item: any, i: number) => (
+            <PageButton buttonImg={item} key={i} />
+          ))}
           <Attachment setImgArr={setImgArr} />
-          <Span>내글</Span>
-          <Span>댓글</Span>
-          <Span>추천</Span>
         </FixButton>
-        {Object.keys(notices).map((num: any) =>
-          <Card notice={notices[num]} key={num} loginInfo={loginInfo} />
-        )}
-
+        {notices.data.map((notice: any, i: number) => (
+          <Card notice={notice} key={i} loginInfo={loginInfo} />
+        ))}
       </MainSession>
     </Container>
   );
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  overflow-y: overlay;
+  height: 100%;
+  width: 100%;
+`;
 
 const MainSession = styled.section`
   display: block;
   max-width: 935px;
   margin: auto;
   padding-top: 74px;
-  padding-bottom:62px;
+  padding-bottom: 62px;
 `;
 const FixButton: React.ComponentType<any> = styled.div`
   @media ${device.desktop} {

@@ -7,12 +7,13 @@ import Img from "../../../asset/icons/kakaologin.png";
 const API_KEY = process.env.REACT_APP_KAKAO_JS_KEY;
 
 type Props = {
-  clickLoginButton: (token: any) => void
-}
+  clickLoginButton: (token: any) => void;
+};
 
 export default function KakaoLoginButton(props: Props) {
   const reponsekakao = (res: any) => {
-    props.clickLoginButton(res.response.access_token)
+    console.log(res);
+    props.clickLoginButton(res.response.access_token);
   };
   const responseFail = () => {
     console.log("Error");
