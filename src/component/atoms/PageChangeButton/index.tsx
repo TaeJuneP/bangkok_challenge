@@ -3,11 +3,14 @@ import styled from "styled-components";
 
 type Props = {
   buttonImg: any;
+  changTabStatus: (tabStatus: number) => void;
+  tabStatus: number;
+  tab: number;
 };
 
 export default function PageChangeButton(props: Props) {
   return (
-    <Container>
+    <Container onClick={() => props.changTabStatus(props.tab)}>
       <Img src={props.buttonImg} />
     </Container>
   );

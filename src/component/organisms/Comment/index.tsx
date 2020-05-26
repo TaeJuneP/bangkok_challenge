@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+
+import CloseButton from "../../atoms/CloseButton";
 import Item from "../../molecules/CommentItem";
 import AddComment from "../../molecules/CardInputComment";
 import { device } from "../../../asset/mediaSize";
@@ -7,12 +9,22 @@ import { device } from "../../../asset/mediaSize";
 type Props = {
   commentList: any;
   postComment: (content: string) => void;
+  setCommentVisible: (commentVisible: boolean) => void;
 };
 
 export default function Comment(props: Props) {
+  const closeComment = () => {
+    props.setCommentVisible(false);
+  };
+
   return (
     <Container>
-      <Title>댓글</Title>
+      <Header>
+        <Title>댓글</Title>
+        <Close>
+          <CloseButton event={closeComment} />
+        </Close>
+      </Header>
       <CommentList>
         {props.commentList.map((item: any) => (
           <Item
@@ -56,4 +68,16 @@ const Title = styled.div`
   width: 100%;
   height: 56px;
   padding: 16px;
+`;
+
+const Close = styled.div`
+  display: none;
+  padding: 11px;
+  @media ${device.mobile} {
+    display: block;
+  }
+`;
+
+const Header = styled.div`
+  display: flex;
 `;

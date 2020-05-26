@@ -83,6 +83,21 @@ export const postNoticeRequest = (): PostNoticeRequestAction => ({
   type: types.POST_NOTICE_REQUEST,
 });
 
+export type GetMyNoticeRequestAction = {
+  type: typeof types.GET_MYNOTICE_REQUEST;
+};
+
+export const getMyNoticeRequest = (): GetMyNoticeRequestAction => ({
+  type: types.GET_MYNOTICE_REQUEST,
+});
+
+export type GetLikeNoticeRequestAction = {
+  type: typeof types.GET_LIKENOTICE_REQUEST;
+};
+
+export const getLikeNoticeRequest = (): GetLikeNoticeRequestAction => ({
+  type: types.GET_LIKENOTICE_REQUEST,
+});
 // export type GetNoticeSuccessAction = {
 //   type: typeof types.GET_NOTICE_SUCCESS;
 //   payload: any;
@@ -110,4 +125,6 @@ export type NoticeActionTypes =
   | GetNoticeRequestAction
   | GetNoticeSuccessAction
   | GetNoticeFailureAction
-  | PostNoticeRequestAction;
+  | PostNoticeRequestAction
+  | GetLikeNoticeRequestAction
+  | GetMyNoticeRequestAction;

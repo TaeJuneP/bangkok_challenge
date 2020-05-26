@@ -17,12 +17,15 @@ const NoticeReducer = (
     case types.GET_NOTICE_SUCCESS:
       return {
         ...state,
-        notice: { data: state.notice.data.concat(action.payload), page: action.page },
+        notice: {
+          data: state.notice.data.concat(action.payload),
+          page: action.page,
+        },
       };
     case types.GET_NOTICE_FAILURE:
       return {
         ...state,
-        notice: [],
+        notice: { data: [], page: {} },
       };
     default:
       return state;

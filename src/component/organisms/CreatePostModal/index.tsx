@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { POST_NOTICE_REQUEST } from "../../../modules/redux/actions/types";
+import { useDispatch } from "react-redux";
+import {
+  POST_NOTICE_REQUEST,
+} from "../../../modules/redux/actions/types";
 
 import styled from "styled-components";
 
@@ -40,6 +42,7 @@ export default function CreatePostModal(props: Props) {
       token: props.token,
       formData: formData,
     });
+    props.closeModal();
   };
 
   return (

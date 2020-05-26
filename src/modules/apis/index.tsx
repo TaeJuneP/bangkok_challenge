@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseUrl = "http://54.180.180.121:8080";
-const baseUrl1 = "http://f46f4821.ngrok.io";
+
 export const kakaoLogin = async (token: string) => {
   const subUrl = "/api/account/login";
   let data: any;
@@ -25,6 +25,33 @@ export const kakaoLogin = async (token: string) => {
 
 export const getNotices = async (token: string, page: string) => {
   const subUrl = `/api/post/?page=${page}&size=10`;
+  let data;
+  await axios
+    .get(baseUrl + subUrl, { headers: { Authorization: "Bearer " + token } })
+    .then((response) => {
+      data = response;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return data;
+};
+export const getMyNotices = async (token: string, page: string) => {
+  const subUrl = `/api/post/getMyPosts?page=${page}&size=10`;
+  let data;
+  await axios
+    .get(baseUrl + subUrl, { headers: { Authorization: "Bearer " + token } })
+    .then((response) => {
+      data = response;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return data;
+};
+
+export const getLikeNotices = async (token: string, page: string) => {
+  const subUrl = `/api/post/getMyLikes?page=${page}&size=10`;
   let data;
   await axios
     .get(baseUrl + subUrl, { headers: { Authorization: "Bearer " + token } })
@@ -101,12 +128,21 @@ export const putLikeStatus = async (id: string, token: string) => {
 
 export const checkLoginToken = async (token: string) => {
   const subUrl = `/oauth/check_token?token=${token}`;
-  let data;
-  await axios({
+  return await axios({
     method: "get",
     url: baseUrl + subUrl,
   }).then((response) => {
-    data = response;
+    return response.data.user_name;
   });
-  return data;
+};
+
+export const getUserProfile = async (id: string, token: string) => {
+  const subUrl = `/api/account/${id}`;
+  return await axios({
+    method: "get",
+    url: baseUrl + subUrl,
+    headers: { Authorization: "Bearer " + token },
+  }).then((response) => {
+    return response.data;
+  });
 };

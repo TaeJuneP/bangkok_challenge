@@ -13,31 +13,22 @@ import Login from "../../atoms/KakaoLoginButton";
 export default function LoginPage(props: RouteComponentProps) {
   const dispatch = useDispatch();
   const loginInfo = useSelector((state: any) => state.login.loginInfo);
-  console.log(loginInfo);
   const clickLoginButton = (token: any) => {
     dispatch({ type: LOGIN_REQUEST, token });
   };
 
   useEffect(() => {
-    // if (window.localStorage.getItem("loginInfo") !== null) {
-    //   const data: any = window.localStorage.getItem("loginInfo");
-    //   dispatch({
-    //     type: CHECK_BKC_TOKEN,
-    //     loginData: JSON.parse(data),
-    //   });
-    //   props.history.push(`/main`);
-    // }
-    //  else if
-     if(loginInfo.login) {
-      // dispatch({
-      //   type: CHECK_BKC_TOKEN,
-      //   loginData: JSON.parse(data),
-      // });
-      props.history.push(`/main`);
-      // window.localStorage.setItem("loginInfo", JSON.stringify(loginInfo));
-      // props.history.push(`/main`);
+    if (window.localStorage.getItem("bkc_token") !== null) {
+      const data: any = window.localStorage.getItem("bkc_token");
+      dispatch({
+        type: CHECK_BKC_TOKEN,
+        token: data,
+      });
     }
-  }, [loginInfo.login]);
+    if (loginInfo.login) {
+      props.history.push(`/main`);
+    }
+  }, [dispatch, loginInfo.login, props.history]);
 
   return (
     <Container>

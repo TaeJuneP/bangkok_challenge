@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Carousel } from "react-responsive-carousel";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Header from "../../molecules/CardHeader";
@@ -28,6 +27,8 @@ export default function Card(props: Props) {
   const [commentList, setCommentList] = useState([]);
   const [commentVisible, setCommentVisible] = useState(false);
   const [like, setLike] = useState(props.notice.likeCount);
+  const [likeStatue, setLikeStatus] = useState(props.notice.selfLike);
+  const [commentCount, setCommentCount] = useState(props.notice.commentCount);
   const getCommentHandler = async () => {
     if (!commentVisible) {
       let data: any = await getCommentList(
@@ -39,17 +40,19 @@ export default function Card(props: Props) {
   };
 
   const postCommentHandler = async (content: string) => {
-    let data: any = await postComment(
+    await postComment(props.notice.id, props.loginInfo.token, content);
+    let data: any = await getCommentList(
       props.notice.id,
-      props.loginInfo.token,
-      content
+      props.loginInfo.token
     );
+    setCommentCount(data.length);
     setCommentList(data);
   };
 
   const putLikeHandler = async () => {
     let data: any = await putLikeStatus(props.notice.id, props.loginInfo.token);
-    console.log(data);
+    setLike(data.data.likeCount);
+    setLikeStatus(data.data.likeState);
   };
   return (
     <Container>
@@ -58,7 +61,7 @@ export default function Card(props: Props) {
         userImg={props.notice.profile_photo}
       />
       <Img img={props.notice.filePath} />
-      <Buttons putLike={putLikeHandler} />
+      <Buttons putLike={putLikeHandler} selfLike={likeStatue} />
       <LikePoint point={like} />
       <Hashtag hashtag={props.notice.hashTag} />
       <Description description={props.notice.article} />
@@ -66,10 +69,14 @@ export default function Card(props: Props) {
         getComment={getCommentHandler}
         commentVisible={commentVisible}
         setCommentVisible={setCommentVisible}
-        commentCount={props.notice.commentCount}
+        commentCount={commentCount}
       />
       {commentVisible ? (
-        <Comment commentList={commentList} postComment={postCommentHandler} />
+        <Comment
+          commentList={commentList}
+          postComment={postCommentHandler}
+          setCommentVisible={setCommentVisible}
+        />
       ) : null}
     </Container>
   );
