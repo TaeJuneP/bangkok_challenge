@@ -11,7 +11,13 @@ type Props = {
 export default function PageChangeButton(props: Props) {
   return (
     <Container onClick={() => props.changTabStatus(props.tab)}>
-      <Img src={props.buttonImg} />
+      <Img
+        src={
+          props.tab === props.tabStatus
+            ? props.buttonImg[1]
+            : props.buttonImg[0]
+        }
+      />
     </Container>
   );
 }

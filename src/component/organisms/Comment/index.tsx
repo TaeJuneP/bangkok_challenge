@@ -20,10 +20,10 @@ export default function Comment(props: Props) {
   return (
     <Container>
       <Header>
-        <Title>댓글</Title>
         <Close>
           <CloseButton event={closeComment} />
         </Close>
+        <Title>댓글</Title>
       </Header>
       <CommentList>
         {props.commentList.map((item: any) => (

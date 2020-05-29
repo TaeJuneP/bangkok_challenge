@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  POST_NOTICE_REQUEST,
-} from "../../../modules/redux/actions/types";
+import { POST_NOTICE_REQUEST } from "../../../modules/redux/actions/types";
 
 import styled from "styled-components";
 
@@ -50,8 +48,8 @@ export default function CreatePostModal(props: Props) {
       <Dimmer event={props.closeModal} />
       <Container>
         <Header>
-          <HeaderName>작성하기</HeaderName>
           <Close event={props.closeModal} />
+          <HeaderName>작성하기</HeaderName>
         </Header>
         <ImgList imgArr={props.imgArr} />
         <TextArea
@@ -94,9 +92,8 @@ const Container = styled.div`
 
 const Header = styled.div`
   width: 100%;
-  height: 30px;
+  height: 50px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 10px;
 `;
@@ -132,4 +129,6 @@ const ButtonContainer = styled.div`
   margin: 30px auto;
 `;
 
-const HeaderName = styled.div``;
+const HeaderName = styled.div`
+  padding: 0 10px;
+  `;

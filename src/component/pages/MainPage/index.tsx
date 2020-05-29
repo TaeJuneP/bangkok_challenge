@@ -22,8 +22,15 @@ import {
 import MyPageImg from "../../../asset/icons/action_user_info.png";
 import Home from "../../../asset/icons/action_home.png";
 import LikePostPage from "../../../asset/icons/like.png";
+import PushHome from "../../../asset/icons/push_home.png";
+import PushLike from "../../../asset/icons/push_like.png";
+import PushUser from "../../../asset/icons/push_user.png";
 
-const imgs = [Home, MyPageImg, LikePostPage];
+const imgs = [
+  [Home, PushHome],
+  [MyPageImg, PushUser],
+  [LikePostPage, PushLike],
+];
 const userPoint = "140";
 export default function MainPage() {
   const [width, setWidth] = useState(window.innerWidth);
