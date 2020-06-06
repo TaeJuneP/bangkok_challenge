@@ -34,7 +34,7 @@ export default function CreatePostModal(props: Props) {
     const formData = new FormData();
     formData.append("article", description);
     formData.append("hashTag", hashtag);
-    formData.append("file", props.imgArr[0]);
+    formData.append("fileList", props.imgArr[0]);
     dispatch({
       type: POST_NOTICE_REQUEST,
       token: props.token,
