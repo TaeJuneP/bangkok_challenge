@@ -5,16 +5,16 @@ type Props = {
   img: any;
 };
 
-const arr = [0, 1];
 export default function CardSlideImg(props: Props) {
   const [slide, setSlide] = useState(0);
   const [startPosition, setStartPostion] = useState(0);
-
+  const arr = props.img.split(",");
+  console.log(arr);
   const dragStart = (e: any) => {
     setStartPostion(e.pageX);
   };
   const dragEnd = (e: any) => {
-    if (startPosition > e.pageX ) {
+    if (startPosition > e.pageX && -slide !== arr.length - 1) {
       setSlide(slide - 1);
     } else if (startPosition < e.pageX && slide !== 0) {
       setSlide(slide + 1);
@@ -29,10 +29,10 @@ export default function CardSlideImg(props: Props) {
       >
         &#60;
       </Button>
-      {arr.map((item) => (
+      {arr.map((item: any, i: number) => (
         <Img
-          src={props.img}
-          key={item}
+          src={item}
+          key={i}
           slide={slide}
           draggable={false}
           onMouseDown={dragStart}

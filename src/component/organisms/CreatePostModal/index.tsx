@@ -34,7 +34,9 @@ export default function CreatePostModal(props: Props) {
     const formData = new FormData();
     formData.append("article", description);
     formData.append("hashTag", hashtag);
-    formData.append("fileList", props.imgArr[0]);
+    for (let i = 0; i < props.imgArr.length; i++) {
+      formData.append("fileList", props.imgArr[i]);
+    }
     dispatch({
       type: POST_NOTICE_REQUEST,
       token: props.token,
@@ -131,4 +133,4 @@ const ButtonContainer = styled.div`
 
 const HeaderName = styled.div`
   padding: 0 10px;
-  `;
+`;
