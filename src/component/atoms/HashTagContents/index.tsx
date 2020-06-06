@@ -2,14 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 type Props = {
-  hashtag: [];
+  hashtag: any;
 };
 
 export default function HashTagContents(props: Props) {
+  console.log(props.hashtag)
   return (
     <Container>
       {props.hashtag.map((item: any) => {
-        return item.content+" ";
+        return item.content + " ";
       })}
     </Container>
   );

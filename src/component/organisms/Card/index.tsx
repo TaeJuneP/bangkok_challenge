@@ -24,6 +24,7 @@ type Props = {
 };
 
 export default function Card(props: Props) {
+  console.log(props.notice)
   const [commentList, setCommentList] = useState([]);
   const [commentVisible, setCommentVisible] = useState(false);
   const [like, setLike] = useState(props.notice.likeCount);
@@ -63,7 +64,7 @@ export default function Card(props: Props) {
       <Img img={props.notice.filePath} />
       <Buttons putLike={putLikeHandler} selfLike={likeStatue} />
       <LikePoint point={like} />
-      <Hashtag hashtag={props.notice.hashTag} />
+      <Hashtag hashtag={props.notice.hashTags} />
       <Description description={props.notice.article} />
       <CommentOpen
         getComment={getCommentHandler}
