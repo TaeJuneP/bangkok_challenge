@@ -9,7 +9,6 @@ export default function CardSlideImg(props: Props) {
   const [slide, setSlide] = useState(0);
   const [startPosition, setStartPostion] = useState(0);
   const arr = props.img.split(",");
-  console.log(arr);
   const dragStart = (e: any) => {
     setStartPostion(e.pageX);
   };

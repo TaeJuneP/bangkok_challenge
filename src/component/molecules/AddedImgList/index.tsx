@@ -9,8 +9,6 @@ type Props = {
 };
 
 export default function AddedImgList(props: Props) {
-  console.log(props.imgArr);
-
   return (
     <ScrollContainer>
       <Container>

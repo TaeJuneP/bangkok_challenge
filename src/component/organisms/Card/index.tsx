@@ -24,7 +24,6 @@ type Props = {
 };
 
 export default function Card(props: Props) {
-  console.log(props.notice)
   const [commentList, setCommentList] = useState([]);
   const [commentVisible, setCommentVisible] = useState(false);
   const [like, setLike] = useState(props.notice.likeCount);

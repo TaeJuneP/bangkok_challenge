@@ -6,7 +6,6 @@ import User from "../../molecules/TopbarUserInfo"
 
 type Props = {
     userId: string;
-    userPoint: string
 }
 
 export default function Topbar(props: Props) {
@@ -14,7 +13,7 @@ export default function Topbar(props: Props) {
         <Container>
             <TopbarContainer>
                 <Logo />
-                <User userId={props.userId} userPoint={props.userPoint} />
+                <User userId={props.userId} />
             </TopbarContainer>
         </Container>
     )

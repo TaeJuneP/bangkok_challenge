@@ -12,7 +12,6 @@ type Props = {
 
 export default function KakaoLoginButton(props: Props) {
   const reponsekakao = (res: any) => {
-    console.log(res);
     props.clickLoginButton(res.response.access_token);
   };
   const responseFail = () => {

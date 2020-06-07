@@ -6,7 +6,6 @@ type Props = {
 };
 
 export default function HashTagContents(props: Props) {
-  console.log(props.hashtag)
   return (
     <Container>
       {props.hashtag.map((item: any) => {

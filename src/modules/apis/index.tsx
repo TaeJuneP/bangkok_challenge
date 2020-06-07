@@ -14,7 +14,6 @@ export const kakaoLogin = async (token: string) => {
       { headers: { "Content-Type": "application/json" } }
     )
     .then((response: any) => {
-      console.log(response);
       data = response.data;
     })
     .catch((err) => {

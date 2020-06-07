@@ -31,7 +31,6 @@ const imgs = [
   [MyPageImg, PushUser],
   [LikePostPage, PushLike],
 ];
-const userPoint = "140";
 export default function MainPage() {
   const [width, setWidth] = useState(window.innerWidth);
   const [page, setPage] = useState(0);
@@ -137,7 +136,7 @@ export default function MainPage() {
           token={loginInfo.token}
         />
       ) : null}
-      <Topbar userId={loginInfo.user.nickname} userPoint={userPoint} />
+      <Topbar userId={loginInfo.user.nickname} />
       <MainSession>
         <FixButton windWidth={(width - 975) / 2 + 20}>
           {imgs.map((item: any, i: number) => (

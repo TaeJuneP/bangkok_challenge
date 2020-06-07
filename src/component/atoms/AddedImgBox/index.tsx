@@ -6,7 +6,6 @@ type Props = {
 };
 
 export default function AddedImgBox(props: Props) {
-  console.log(props.img.type);
   return (
     <Container>
       <Img src={URL.createObjectURL(props.img)} />
