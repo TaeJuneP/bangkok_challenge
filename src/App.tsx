@@ -2,17 +2,16 @@ import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-// import MainPage from "./component/pages/MainPage";
+import MainPage from "./component/pages/MainPage";
 import LoginPage from "./component/pages/LoginPage";
 
 export default function App() {
- 
   return (
     <BrowserRouter>
-      <Container >
+      <Container>
         <Switch>
           <Route exact={true} path="/" component={LoginPage} />
-          {/* <Route path="/main" component={MainPage} /> */}
+          <Route path="/main" component={MainPage} />
         </Switch>
         <GlobalStyle />
       </Container>
