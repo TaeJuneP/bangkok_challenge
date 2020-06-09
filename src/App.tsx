@@ -11,7 +11,7 @@ export default function App() {
     <BrowserRouter>
       <Container >
         <Switch>
-          <Route exact={true} path="/" component={LoginPage} />
+          {/* <Route exact={true} path="/" component={LoginPage} /> */}
           <Route path="/main" component={MainPage} />
         </Switch>
         <GlobalStyle />
